@@ -4,5 +4,13 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase:  {
+    apiKey: 'AIzaSyALGKfLWf9DmdOlb8Uz0lFZAY8L9Wwt02s',
+    authDomain: 'mymacrotracker.firebaseapp.com',
+    databaseURL: 'https://mymacrotracker.firebaseio.com',
+    projectId: "mymacrotracker",
+    storageBucket: 'mymacrotracker.appspot.com',
+    messagingSenderId: '732870010524'
+ }
 };

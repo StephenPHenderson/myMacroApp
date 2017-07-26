@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./weight.component.scss']
 })
 export class WeightComponent implements OnInit {
-
+  title:string = 'Log Weight'
   constructor() { }
 
   ngOnInit() {

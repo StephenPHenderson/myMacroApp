@@ -15,7 +15,8 @@ import { FoodDiaryComponent } from './food-diary/food-diary.component';
 import { WorkoutComponent } from './workout/workout.component';
 import { WeightComponent } from './weight/weight.component';
 import { UserComponent } from './user/user.component';
-import {MaterialModule,MdToolbarModule, MdSidenavModule, MdButtonModule} from '@angular/material';
+import { MaterialModule, MdToolbarModule, MdSidenavModule, MdButtonModule, MdInputModule } from '@angular/material';
+import { AuthService } from "../servives/auth.service";
 @NgModule({
   declarations: [
     AppComponent,    
@@ -36,9 +37,10 @@ import {MaterialModule,MdToolbarModule, MdSidenavModule, MdButtonModule} from '@
     MdToolbarModule,
     MdSidenavModule,
     MdButtonModule,
+    MdInputModule,
     MaterialModule
   ],  
   bootstrap: [AppComponent],
-  providers: [Constants]
+  providers: [Constants, AuthService]
 })
 export class AppModule { }

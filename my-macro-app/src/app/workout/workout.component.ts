@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./workout.component.scss']
 })
 export class WorkoutComponent implements OnInit {
-
+  title:string = 'Track Workouts'
   constructor() { }
 
   ngOnInit() {

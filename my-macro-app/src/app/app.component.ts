@@ -6,6 +6,8 @@ import { FirebaseListObservable, AngularFireDatabase } from "angularfire2/databa
 import { AngularFireAuth } from "angularfire2/auth";
 import { NavItem } from "./models/nav-item.model";
 import { Constants } from "./shared/constants";
+import { AuthService } from "../servives/auth.service";
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -18,32 +20,44 @@ export class AppComponent {
   showLoginForm: boolean = false;
   appTitle:string;
   navMenu: NavItem[];
-  constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase) {
-    this.items = af.list('/messages', {
-      query: {
-        limitToLast: 50
-      }
-    });
+  email: string;
+  password: string;
+  constructor(public afAuth: AngularFireAuth, 
+              public af: AngularFireDatabase,
+              public authService: AuthService) {
     this.user = this.afAuth.authState;
     this.appTitle = Constants.AppTitle;
     this.navMenu = Constants.Routes;
 
   }
-  loginWithGoogle() {
-      this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-  }
-
-  loginWithFacebook() {
-      this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
+  signup() {
+    this.authService.signup(this.email, this.password);
+    this.email = this.password = '';
   }
 
   login() {
-      this.showLoginForm = true;
+    this.authService.login(this.email, this.password);
+    this.email = this.password = '';    
   }
 
   logout() {
-      this.afAuth.auth.signOut();
+    this.authService.logout();
   }
+  // loginWithGoogle() {
+  //     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  // }
+
+  // loginWithFacebook() {
+  //     this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
+  // }
+
+  // login() {
+  //     this.showLoginForm = true;
+  // }
+
+  // logout() {
+  //     this.afAuth.auth.signOut();
+  // }
 
   Send(desc: string) {
       this.items.push({ message: desc});

@@ -1,0 +1,49 @@
+
+<md-sidenav-container>
+  <md-toolbar class="titleBar">
+    <button md-button (click)="sidenav.open()" class="menuButton">
+      <i class="material-icons">menu</i>
+    </button>
+    <span>{{appTitle}}</span>
+    <span class="example-spacer"></span>
+    <span *ngIf="authService.user | async">Welcome {{ (authService.user | async)?.email }}!</span>
+    <button (click)="logout()" *ngIf="authService.user | async">
+      Logout
+    </button>
+  </md-toolbar>
+  <md-sidenav #sidenav>
+     <button md-button class="leftNavButton" *ngFor="let m of navMenu" routerLink="/{{m.path}}" (click)="sidenav.close()">
+      {{m.title}}      
+    </button>
+  </md-sidenav>  
+  <div class="mainBody container">
+    <md-card *ngIf="!(authService.user | async)" class="loginForm">
+      <md-card-title>Welcome!</md-card-title>
+      <md-card-content>
+        <md-input-container class="full-width">
+          <input mdInput type="text" [(ngModel)]="email" placeholder="Email Address" >
+          </md-input-container>
+            <md-input-container class="full-width">
+          <input mdInput type="password" [(ngModel)]="password" placeholder="Password" class="full-width">
+        </md-input-container>
+        
+        <button md-raised-button class="half-width" (click)="signup()" [disabled]="!email || !password">
+          Signup
+        </button>
+        <button md-raised-button class="half-width" (click)="login()" [disabled]="!email || !password">
+          Login
+        </button>        
+        
+        <button md-raised-button class="full-width" (click)="login()" [disabled]="!email || !password">
+          Login with Google
+        </button>
+        
+        <button md-raised-button class="full-width" (click)="login()" [disabled]="!email || !password">
+          Login with Facebook
+        </button>
+      </md-card-content>
+    </md-card>    
+    <router-outlet></router-outlet>
+  </div>
+  
+</md-sidenav-container>

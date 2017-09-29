@@ -30,15 +30,16 @@
         <button md-raised-button class="half-width" (click)="signup()" [disabled]="!email || !password">
           Signup
         </button>
-        <button md-raised-button class="half-width" (click)="login()" [disabled]="!email || !password">
+        <button md-raised-button style="float:right;"class="half-width" (click)="login()" [disabled]="!email || !password">
           Login
         </button>        
         
-        <button md-raised-button class="full-width" (click)="login()" [disabled]="!email || !password">
+        
+        <button md-raised-button class="full-width border-bottom" (click)="loginWithGoogle()">
           Login with Google
         </button>
         
-        <button md-raised-button class="full-width" (click)="login()" [disabled]="!email || !password">
+        <button md-raised-button class="full-width border-bottom" (click)="loginWithFacebook()">
           Login with Facebook
         </button>
       </md-card-content>

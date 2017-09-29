@@ -43,24 +43,18 @@ export class AppComponent {
   logout() {
     this.authService.logout();
   }
-  // loginWithGoogle() {
-  //     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-  // }
 
-  // loginWithFacebook() {
-  //     this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
-  // }
+  loginWithGoogle() {
+      this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+      .then(value => {
+        console.log('Nice, it worked!');
+      })
+      .catch(err => {
+        console.log('Something went wrong:',err.message);
+      });
+  }
 
-  // login() {
-  //     this.showLoginForm = true;
-  // }
-
-  // logout() {
-  //     this.afAuth.auth.signOut();
-  // }
-
-  Send(desc: string) {
-      this.items.push({ message: desc});
-      this.msgVal = '';
+  loginWithFacebook() {
+      this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
   }
 }
